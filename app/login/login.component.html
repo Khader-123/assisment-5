@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-4 py-4 offset-4">
+    <h2>Login</h2>
+<form [formGroup]="formdata" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': this.formdata.get('email')?.touched && this.formdata.get('email')?.invalid}" />
+        <span *ngIf="this.formdata.get('email')?.touched && this.formdata.get('email')?.invalid" class="invalid-feedback">
+          <div *ngIf="this.formdata.get('email')?.errors?.['required']">Email is required.</div>
+          <div *ngIf="this.formdata.get('email')?.errors">Email seems invalid.</div>
+          </span>
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': this.formdata.get('password')?.touched && this.formdata.get('password')?.invalid }" />
+        <div *ngIf="this.formdata.get('password')?.touched && this.formdata.get('password')?.invalid" class="invalid-feedback">
+          <div *ngIf="this.formdata.get('password')?.errors?.['required']">Email is required.</div>
+        </div>
+    </div>
+    <div class="form-group text-center d-grid gap-1  mx-auto">
+        <button type="submit" [disabled]="formdata.invalid"  class="btn btn-primary mt-3">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"  ></span>
+            Login
+        </button>
+    </div>
+</form>
+  </div>
+</div>
